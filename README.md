@@ -1,5 +1,7 @@
 # IDAz
 
+[![CI](https://github.com/wildagekraftingdreamz/IDAz/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/wildagekraftingdreamz/IDAz/actions/workflows/ci.yml)
+
 A nostalgic desktop messenger for **WhatsApp** and **Telegram**, dressed up like ICQ 5: a dark teal contact roster, separate floating chat windows, beveled buttons, a synthesized "uh-oh" message chime, four skins and four text sizes.
 
 IDAz is an original tribute app. It is not affiliated with ICQ, WhatsApp, Telegram or Meta.
