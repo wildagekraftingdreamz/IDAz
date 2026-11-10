@@ -1,0 +1,38 @@
+appId: com.soulapps.idaz
+productName: IDAz
+copyright: Copyright © 2026 SoulApps
+directories:
+  buildResources: build
+  output: release
+files:
+  - dist-renderer/**/*
+  - src/main/**/*
+  - src/preload/**/*
+  - build/icon.png
+  - package.json
+  - "!**/*.map"
+  - "!scripts/**/*"
+asar: true
+win:
+  icon: build/icon.png
+  target:
+    - nsis
+    - portable
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+mac:
+  icon: build/icon.png
+  category: public.app-category.social-networking
+  target:
+    - dmg
+    - zip
+linux:
+  icon: build/icon.png
+  category: Network;InstantMessaging
+  maintainer: SoulApps
+  target:
+    - AppImage
+    - deb

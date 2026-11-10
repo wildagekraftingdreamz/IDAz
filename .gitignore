@@ -1,0 +1,14 @@
+node_modules/
+dist-renderer/
+release/
+*.log
+
+# IDAz runtime data: never commit chat history, linked-device sessions or media
+idaz-state.json
+idaz-state.json.tmp
+sessions/
+media/
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,175 @@
+.contact-profile {
+  position: relative;
+}
+
+.contact-profile-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 0.75rem;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.012) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, var(--inset-2), var(--inset));
+}
+
+.contact-profile-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.38rem;
+  padding: 0.85rem 0.6rem 0.7rem;
+  text-align: center;
+  background: linear-gradient(180deg, var(--panel-alt), var(--panel));
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: inset 1px 1px 0 var(--bevel-hi);
+}
+
+.contact-profile-name {
+  max-width: 100%;
+  margin-top: 0.12rem;
+  font-size: 1rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-profile-sub {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+}
+
+.contact-profile-flags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.28rem;
+}
+
+.contact-profile-unread,
+.contact-profile-muted {
+  padding: 0.08rem 0.34rem;
+  font-size: 0.64rem;
+  color: var(--text-dim);
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+}
+
+.contact-profile-unread[data-profile-unread]:not([data-profile-unread='0']) {
+  color: var(--badge-text);
+  background: var(--badge);
+  border-color: var(--badge);
+  font-weight: 700;
+}
+
+.contact-profile-muted[data-profile-muted='true'] {
+  color: var(--warn);
+  border-color: color-mix(in srgb, var(--warn) 55%, var(--line));
+}
+
+.contact-profile-details {
+  margin: 0;
+  padding: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: inset 1px 1px 0 var(--bevel-hi);
+}
+
+.contact-profile-details > div {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  padding: 0.38rem 0.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.contact-profile-details > div:first-child {
+  border-top: none;
+}
+
+.contact-profile-details dt {
+  flex: 0 0 5.4rem;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.contact-profile-details dd {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 0.76rem;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.contact-profile-loading {
+  flex: 1;
+  display: grid;
+  place-content: center;
+  gap: 0.35rem;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--text-dim);
+}
+
+.contact-profile-loading.error {
+  color: var(--danger);
+}
+
+.contact-profile-placeholder-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.contact-profile-notice {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.5rem;
+  color: var(--danger);
+  background: color-mix(in srgb, var(--danger) 12%, var(--panel));
+  border-top: 1px solid var(--danger);
+  font-size: 0.7rem;
+}
+
+.contact-profile-notice span {
+  flex: 1;
+}
+
+.contact-profile-notice button {
+  padding: 0 0.2rem;
+  color: inherit;
+  background: none;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.contact-profile-actions {
+  flex: 0 0 auto;
+  display: flex;
+  gap: 0.4rem;
+  padding: 0.52rem 0.6rem;
+  background: linear-gradient(180deg, var(--panel), var(--panel-alt));
+  border-top: 1px solid var(--line);
+  box-shadow: inset 0 1px 0 var(--bevel-hi);
+}
+
+.contact-profile-actions .btn.primary {
+  flex: 1.2;
+}
+
+.contact-profile-actions .btn:not(.primary) {
+  flex: 1;
+}

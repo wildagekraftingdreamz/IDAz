@@ -1,0 +1,155 @@
+.viewer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: #000;
+  color: #d9e8e2;
+}
+
+.viewer-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.38rem 0.6rem;
+  background: linear-gradient(180deg, #0e1614, #070c0b);
+  border-bottom: 1px solid #1e2d28;
+}
+
+.viewer-heading {
+  flex: 1;
+  min-width: 0;
+}
+
+.viewer-title {
+  font-size: 0.84rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.viewer-sub {
+  font-size: 0.68rem;
+  color: #8aa39a;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.viewer-actions {
+  display: flex;
+  gap: 0.3rem;
+  flex: 0 0 auto;
+}
+
+.viewer .btn {
+  color: #d9e8e2;
+  background: linear-gradient(180deg, #1b2a25, #101a17);
+  border-color: #2e463d;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.viewer .btn.primary {
+  color: #04241b;
+  background: linear-gradient(180deg, #39e2a3, #1f9d73);
+  border-color: #1f9d73;
+}
+
+.viewer-stage {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+  padding: 0.8rem;
+  overflow: hidden;
+}
+
+.viewer-image,
+.viewer-video {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  background: #000;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}
+
+.viewer-file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 1.4rem 2rem;
+  background: #0b1210;
+  border: 1px solid #2b3d36;
+  border-radius: 4px;
+  min-width: 280px;
+}
+
+.viewer-file-icon {
+  width: 58px;
+  height: 66px;
+  display: grid;
+  place-items: center;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: #39e2a3;
+  background: #101a17;
+  border: 1px solid #2e463d;
+}
+
+.viewer-file-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  overflow-wrap: anywhere;
+  max-width: 420px;
+}
+
+.viewer-file-sub {
+  font-size: 0.72rem;
+  color: #8aa39a;
+}
+
+.viewer-file audio {
+  width: 320px;
+  max-width: 70vw;
+  margin-top: 0.3rem;
+}
+
+.viewer-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: 420px;
+  text-align: center;
+}
+
+.viewer-message-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ff9a8a;
+}
+
+.viewer-message-body {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: #a9bdb6;
+}
+
+.viewer-foot {
+  flex: 0 0 auto;
+  padding: 0.28rem 0.6rem;
+  font-size: 0.68rem;
+  color: #6f867e;
+  background: #070c0b;
+  border-top: 1px solid #1e2d28;
+  min-height: 1.6rem;
+}
+
+.saved-path {
+  color: #39e2a3;
+  overflow-wrap: anywhere;
+}
