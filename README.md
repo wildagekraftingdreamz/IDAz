@@ -139,3 +139,7 @@ npm run build
 # UI smoke test with demo data (opens roster, a chat and the viewer, prints DOM checks, quits)
 IDAZ_SMOKE=1 npx electron . --demo
 ```
+
+## License
+
+MIT — see [LICENSE](LICENSE). Copyright (c) 2026 SoulApps.
