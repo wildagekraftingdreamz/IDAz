@@ -215,4 +215,23 @@ export class Store {
     const list = this.messages(peerId)
     return list.length ? list[list.length - 1] : null
   }
+
+  /**
+   * Drops every message, preview and unread badge but keeps the things that
+   * make the app usable: settings, linked accounts, the contact list, mute
+   * state and its recency ordering.
+   */
+  clearHistory() {
+    const peers = Object.values(this.data.peers)
+    let removed = 0
+    for (const list of Object.values(this.data.messages)) removed += list.length
+    this.data.messages = {}
+    for (const peer of peers) {
+      peer.unread = 0
+      peer.lastPreview = ''
+      peer.lastFromMe = false
+    }
+    this.save()
+    return { messages: removed, peers: peers.length }
+  }
 }

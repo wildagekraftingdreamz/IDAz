@@ -122,6 +122,12 @@ export function Chat({ peerId, focusMessageId }: { peerId: string; focusMessageI
         if (id !== peerId) return
         setPeer(next)
       }),
+      api.onCleared(({ peerId: id }) => {
+        if (id !== peerId) return
+        setMessages([])
+        setHasMore(false)
+        setPeerTyping(false)
+      }),
       api.onTyping(({ peerId: id, typing }) => {
         if (id !== peerId) return
         setPeerTyping(typing)

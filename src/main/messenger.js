@@ -488,6 +488,19 @@ export class Messenger {
     return this.markRead(peerId, { sendReceipt: false })
   }
 
+  /** Wipes stored conversations and tells every open window to empty itself. */
+  clearHistory() {
+    const counts = this.store.clearHistory()
+    this.typing.clear()
+    this.refreshTimes.clear()
+    for (const peer of Object.values(this.store.peers)) {
+      this.windows.broadcast('idaz:chat:cleared', { peerId: peer.id })
+      this.windows.broadcast('idaz:chat:peer', { peerId: peer.id, peer: this.peerView(peer) })
+    }
+    this.sendRoster()
+    return { ok: true, messages: counts.messages, peers: counts.peers }
+  }
+
   setMuted(peerId, muted) {
     const peer = this.store.peer(peerId)
     if (!peer) return { ok: false, error: 'Unknown chat.' }

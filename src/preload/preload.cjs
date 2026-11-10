@@ -6,6 +6,7 @@ const ALLOWED_EVENTS = new Set([
   'idaz:chat:append',
   'idaz:chat:patch',
   'idaz:chat:peer',
+  'idaz:chat:cleared',
   'idaz:chat:typing',
   'idaz:chat:focusMessage',
   'idaz:media:update',

@@ -129,7 +129,32 @@ async function boot() {
         }
       }
       const sdkCheck = await checkSdkImports()
-      const payload = { themeCheck, sdkCheck, windows: report }
+
+      let historyCheck = null
+      try {
+        const mainWin = windows.main
+        if (mainWin && !mainWin.isDestroyed()) {
+          historyCheck = await mainWin.webContents.executeJavaScript(`(async () => {
+            const before = (await window.idaz.invoke('idaz:chat:get', { peerId: 'demo:mira' })).messages.length
+            const cleared = await window.idaz.invoke('idaz:chat:clearHistory')
+            const after = (await window.idaz.invoke('idaz:chat:get', { peerId: 'demo:mira' })).messages.length
+            await new Promise((resolve) => setTimeout(resolve, 600))
+            return { before, after, cleared, rows: document.querySelectorAll('[data-contact-row]').length }
+          })()`)
+          const chatWin = BrowserWindow.getAllWindows().find((win) =>
+            win.webContents.getURL().includes('#/chat/'),
+          )
+          if (chatWin) {
+            historyCheck.bubblesAfterClear = await chatWin.webContents.executeJavaScript(
+              `document.querySelectorAll('[data-message-bubble]').length`,
+            )
+          }
+        }
+      } catch (error) {
+        historyCheck = { error: String(error?.message || error) }
+      }
+
+      const payload = { themeCheck, sdkCheck, historyCheck, windows: report }
       if (process.env.IDAZ_SMOKE_OUT) {
         try {
           fs.writeFileSync(process.env.IDAZ_SMOKE_OUT, JSON.stringify(payload, null, 2))

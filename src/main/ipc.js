@@ -23,6 +23,7 @@ export function registerIpc({ messenger, windows }) {
   handle('idaz:chat:older', (_event, { peerId } = {}) => messenger.loadOlder(String(peerId || '')))
   handle('idaz:chat:read', (_event, { peerId } = {}) => messenger.markRead(String(peerId || '')))
   handle('idaz:chat:clearUnread', (_event, { peerId } = {}) => messenger.clearUnread(String(peerId || '')))
+  handle('idaz:chat:clearHistory', () => messenger.clearHistory())
   handle('idaz:chat:mute', (_event, { peerId, muted } = {}) =>
     messenger.setMuted(String(peerId || ''), !!muted),
   )

@@ -48,6 +48,7 @@ export const api = {
   loadOlder: (peerId: string) => call<{ ok: boolean; count?: number; error?: string }>('idaz:chat:older', { peerId }),
   markRead: (peerId: string) => call<{ ok: boolean }>('idaz:chat:read', { peerId }),
   clearUnread: (peerId: string) => call<{ ok: boolean }>('idaz:chat:clearUnread', { peerId }),
+  clearHistory: () => call<{ ok: boolean; messages: number; peers: number }>('idaz:chat:clearHistory'),
   setMuted: (peerId: string, muted: boolean) =>
     call<{ ok: boolean; peer?: Peer; error?: string }>('idaz:chat:mute', { peerId, muted }),
   send: (peerId: string, text: string) => call<SendResult>('idaz:chat:send', { peerId, text }),
@@ -93,6 +94,8 @@ export const api = {
     subscribe<{ peerId: string; messageId: string; patch: Partial<Message> }>('idaz:chat:patch', callback),
   onPeer: (callback: (data: { peerId: string; peer: Peer }) => void) =>
     subscribe<{ peerId: string; peer: Peer }>('idaz:chat:peer', callback),
+  onCleared: (callback: (data: { peerId: string }) => void) =>
+    subscribe<{ peerId: string }>('idaz:chat:cleared', callback),
   onTyping: (callback: (data: { peerId: string; typing: boolean }) => void) =>
     subscribe<{ peerId: string; typing: boolean }>('idaz:chat:typing', callback),
   onFocusMessage: (callback: (data: { messageId: string }) => void) =>

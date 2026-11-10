@@ -31,6 +31,7 @@ export function SettingsPanel({ settings, accounts, version, demo, onClose }: Se
   const [apiHash, setApiHash] = useState(settings.telegramApiHash || '')
   const [saved, setSaved] = useState(false)
   const [busy, setBusy] = useState<string | null>(null)
+  const [historyNote, setHistoryNote] = useState('')
 
   const patch = (value: Partial<Settings>) => {
     api.updateSettings(value).catch(() => {})
@@ -53,6 +54,26 @@ export function SettingsPanel({ settings, accounts, version, demo, onClose }: Se
     setBusy(service)
     try {
       await api.logout(service)
+    } finally {
+      setBusy(null)
+    }
+  }
+
+  const clearHistory = async () => {
+    const sure = window.confirm(
+      'Clear every chat history on this computer?\n\nMessages, previews and unread badges are removed. Linked accounts, contacts, muted chats, skins and settings stay. This cannot be undone.',
+    )
+    if (!sure) return
+    setBusy('history')
+    try {
+      const result = await api.clearHistory()
+      setHistoryNote(
+        result.messages
+          ? `Cleared ${result.messages} messages across ${result.peers} conversations.`
+          : 'There was no stored history to clear.',
+      )
+    } catch (error) {
+      setHistoryNote(error instanceof Error ? error.message : 'Could not clear the history.')
     } finally {
       setBusy(null)
     }
@@ -216,6 +237,28 @@ export function SettingsPanel({ settings, accounts, version, demo, onClose }: Se
               </div>
             )
           })}
+        </section>
+
+        <section className="setting-group">
+          <div className="setting-title">Chat history</div>
+          <p className="setting-hint">
+            Clearing keeps what makes IDAz useful — linked accounts, your contact list, muted chats, skins and
+            settings — and removes only what was said: messages, previews and unread badges. Downloaded media files
+            stay on this computer.
+          </p>
+          <div className="row">
+            <button
+              type="button"
+              className="btn danger"
+              data-clear-history
+              disabled={busy === 'history'}
+              onClick={clearHistory}
+              title="Remove every stored message, keeping accounts, contacts and settings"
+            >
+              Clear chat history
+            </button>
+          </div>
+          {historyNote ? <p className="setting-hint" data-history-note>{historyNote}</p> : null}
         </section>
 
         <section className="setting-group about">

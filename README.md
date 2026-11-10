@@ -13,6 +13,7 @@ IDAz is an original tribute app. It is not affiliated with ICQ, WhatsApp, Telegr
 - **Result menu**: right-click a message search result to open it, open the contact's profile, copy the full message text, search only that conversation, switch back to all chats, or mute/unmute the contact.
 - **Profiles**: open a contact's profile from a message result to see its service, username, last activity, unread count and notification state, then open the chat or mute it there.
 - **Mute**: mute notifications from the bell on each roster row, from the chat header, or from a contact's right-click menu. Muted chats still count unread messages but make no sound and do not flash the window.
+- **Clear history**: one button in Settings wipes every stored message, preview and unread badge while keeping linked accounts, contacts, mute state, recency order, skins and settings. Open chat windows empty immediately.
 - **Unread**: right-click a contact to mark it read (sends read receipts) or clear unread locally without sending receipts. Both actions are disabled when there is nothing unread.
 - **Chat windows**: one real desktop window per conversation, so several people can be open side by side.
 - **Chat shortcuts**: `Enter` or `Ctrl+Enter` sends, `Shift+Enter` adds a line, `Esc` closes the chat, `Ctrl+R`/`Ctrl+E` quote the last received/sent message, and `Ctrl+B`/`I`/`U` wrap the selection in message markup. The `?` button in a chat header shows the list.
