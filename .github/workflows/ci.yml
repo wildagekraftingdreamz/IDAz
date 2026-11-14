@@ -15,12 +15,8 @@ concurrency:
 
 jobs:
   check:
-    name: Typecheck and build
+    name: Checks
     runs-on: ubuntu-latest
-    env:
-      # Only the renderer bundle is built, so the ~100 MB Electron binary is
-      # not needed; skipping it also avoids install-script policy prompts.
-      ELECTRON_SKIP_BINARY_DOWNLOAD: 1
     steps:
       - uses: actions/checkout@v5
 
@@ -37,3 +33,20 @@ jobs:
 
       - name: Build renderer
         run: npm run build
+
+      - name: Store tests
+        run: npm test
+
+      # The smoke test drives a real Electron window, so it needs a display.
+      - name: Install Xvfb
+        run: sudo apt-get update && sudo apt-get install -y xvfb
+
+      - name: UI smoke test
+        env:
+          IDAZ_SMOKE: '1'
+          IDAZ_SMOKE_OUT: ${{ runner.temp }}/idaz-smoke.json
+        run: |
+          set -euo pipefail
+          timeout 180 xvfb-run -a --server-args="-screen 0 1280x800x24" \
+            npx electron . --demo --no-sandbox
+          node scripts/check-smoke.mjs "$IDAZ_SMOKE_OUT"

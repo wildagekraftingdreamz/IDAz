@@ -13,10 +13,17 @@ app.setName('IDAz')
 
 const demoMode = process.argv.includes('--demo') || process.env.IDAZ_DEMO === '1'
 // Demo runs must never touch a real account's sessions or history.
-app.setPath(
-  'userData',
-  demoMode ? path.join(app.getPath('temp'), 'IDAz-demo') : path.join(app.getPath('appData'), 'IDAz'),
-)
+const demoUserData = path.join(app.getPath('temp'), 'IDAz-demo')
+app.setPath('userData', demoMode ? demoUserData : path.join(app.getPath('appData'), 'IDAz'))
+// A smoke run has to start from a clean demo profile: a previous run's cleared
+// history would empty the very windows the report inspects.
+if (demoMode && process.env.IDAZ_SMOKE === '1') {
+  try {
+    fs.rmSync(demoUserData, { recursive: true, force: true })
+  } catch {
+    // a locked cache folder is not fatal; the demo seeds itself anyway
+  }
+}
 let windows = null
 let messenger = null
 let store = null

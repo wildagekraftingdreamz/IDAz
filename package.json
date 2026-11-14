@@ -14,6 +14,8 @@
     "preview": "vite",
     "build": "node scripts/gen-assets.mjs && vite build",
     "typecheck": "tsc --noEmit",
+    "test": "node scripts/test-store.mjs",
+    "check:smoke": "node scripts/check-smoke.mjs",
     "assets": "node scripts/gen-assets.mjs",
     "dist": "npm run build && electron-builder",
     "dist:win": "npm run build && electron-builder --win",

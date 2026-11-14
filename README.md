@@ -137,9 +137,11 @@ Artifacts land in `release/`. Each platform must be built on that platform (or i
 
 ```bash
 npm run typecheck
+npm test               # store: settings, de-duplication, atomic save, clearHistory
 npm run build
 # UI smoke test with demo data (opens roster, a chat and the viewer, prints DOM checks, quits)
-IDAZ_SMOKE=1 npx electron . --demo
+IDAZ_SMOKE=1 IDAZ_SMOKE_OUT=smoke.json npx electron . --demo
+npm run check:smoke -- smoke.json   # fails if the report shows a broken window
 ```
 
 ## License
