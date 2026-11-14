@@ -115,6 +115,3 @@ export const api = {
   control: (action: 'minimize' | 'maximize' | 'close') => bridge?.control(action),
   closeWindow: () => bridge?.closeWindow(),
 }
-
-// temporary CI probe
-export const __ciProbe: number = 'this is not a number'
