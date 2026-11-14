@@ -145,3 +145,5 @@ IDAZ_SMOKE=1 npx electron . --demo
 ## License
 
 MIT — see [LICENSE](LICENSE). Copyright (c) 2026 SoulApps.
+
+<!-- temporary probe: verifies the pull_request trigger -->
